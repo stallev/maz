@@ -1,12 +1,13 @@
 'use strict';
 
 const gulp = require('gulp');
+const { src, dest } = require('gulp');
 
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('node-sass'));
 const sassGlob = require('gulp-sass-glob');
 const groupMediaQueries = require('gulp-group-css-media-queries');
 const cleanCSS = require('gulp-cleancss');
-const postcss = require('gulp-postcss');
+var postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer');
 
 const concat = require('gulp-concat');
@@ -94,7 +95,6 @@ function images() {
   return gulp.src('src/img/**/*.{jpg,jpeg,png,gif,svg}')
     .pipe(imagemin([
       imagemin.optipng({optimizationLevel: 3}),
-      imagemin.jpegtran({progressive: true})
     ]))
     .pipe(gulp.dest('build/img'));
 };
